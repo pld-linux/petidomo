@@ -16,6 +16,7 @@ Source3:	commercial.txt
 Patch0:		%{name}-src.PLD.diff
 Patch1:		%{name}-src.aliases.diff
 URL:		http://www.petidomo.com/
+BuildRequires:	autoconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
