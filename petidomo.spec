@@ -125,24 +125,24 @@ chmod -f 751 /home/petidomo
 %doc petidomo-manual-html README COPYRIGHT etc/ChangeLog etc/mail2news.c
 %doc scripts/list2news scripts/aliases4qmail.sh etc/listconfig commercial.txt
 
-%attr(751,petidomo,petidomo) %dir /home/petidomo/bin
-%attr(750,petidomo,petidomo) %dir /home/petidomo%{_sysconfdir}
-%attr(750,petidomo,petidomo) %dir /home/petidomo/lists
-%attr(770,petidomo,petidomo) %dir /home/petidomo/crash
+%attr(751,root,petidomo) %dir /home/petidomo/bin
+%attr(750,root,petidomo) %dir /home/petidomo%{_sysconfdir}
+%attr(770,root,petidomo) %dir /home/petidomo/lists
+%attr(770,root,petidomo) %dir /home/petidomo/crash
 
-%attr(6111,petidomo,petidomo) /home/petidomo/bin/petidomo
-%attr(6111,petidomo,petidomo) /home/petidomo/bin/listserv
-%attr(6111,petidomo,petidomo) /home/petidomo/bin/hermes
+%attr(6111,root,petidomo) /home/petidomo/bin/petidomo
+%attr(6111,root,petidomo) /home/petidomo/bin/listserv
+%attr(6111,root,petidomo) /home/petidomo/bin/hermes
 
-%attr(750,petidomo,petidomo) /home/petidomo/bin/InsertNameInSubject.sh
-%attr(750,petidomo,petidomo) /home/petidomo/bin/rfc2369.sh
-%attr(750,petidomo,petidomo) /home/petidomo/bin/pgp-encrypt.sh
-%attr(750,petidomo,petidomo) /home/petidomo/bin/pgp-decrypt.sh
-%attr(755,petidomo,petidomo) /home/petidomo/bin/send-pr
+%attr(750,root,petidomo) /home/petidomo/bin/InsertNameInSubject.sh
+%attr(750,root,petidomo) /home/petidomo/bin/rfc2369.sh
+%attr(750,root,petidomo) /home/petidomo/bin/pgp-encrypt.sh
+%attr(750,root,petidomo) /home/petidomo/bin/pgp-decrypt.sh
+%attr(755,root,petidomo) /home/petidomo/bin/send-pr
 
-%attr(660,petidomo,petidomo) %config(noreplace) %verify(not size mtime md5) /home/petidomo%{_sysconfdir}/*
+%attr(660,root,petidomo) %config(noreplace) %verify(not size mtime md5) /home/petidomo%{_sysconfdir}/*
 
-%attr(644,petidomo,petidomo) /home/petidomo/.nofinger
+%attr(644,root,petidomo) /home/petidomo/.nofinger
 
 %files cgimanager
 %defattr(644,root,root,755)
