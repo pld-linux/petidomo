@@ -3,7 +3,7 @@ Summary(pl):	£atwy w u¿yciu oraz instalacji serwer list pocztowych
 Name:		petidomo
 Version:	2.2
 Release:	5d
-License:	free for non commercial use
+License:	Free for non-commercial use
 Vendor:		Peter Simons <simons@petidomo.com>
 Group:		Applications/Mail
 Source0:	http://www.petidomo.com/download/%{version}/source/%{name}-%{version}-src.tar.gz
