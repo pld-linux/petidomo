@@ -13,8 +13,9 @@ Source2:	help-pl-eng
 Source3:	commercial.txt
 Patch0:		%{name}-src.PLD.diff
 Patch1:		%{name}-src.aliases.diff
+Patch2:		%{name}-acfix.patch
 URL:		http://www.petidomo.com/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.53
 Requires(post):	fileutils
 Requires(post):	grep
 Requires(post):	sed
@@ -49,13 +50,13 @@ Uwaga: zarz±dca CGI obdarzony jest SUID-em root.
 
 %prep
 %setup -q -n %{name}-src -a1
-%patch  -p1
+%patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__autoconf}
-./configure \
-	--prefix=%{_prefix}
+%configure
 
 %{__make} CFLAGS+="%{rpmcflags}"
 
