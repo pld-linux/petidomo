@@ -106,7 +106,7 @@ mv -f %{homedir}/etc/petidomo.conf %{homedir}/etc/petidomo.conf.new
 sed -e "s#@HOSTNAME@#`hostname --fqdn`#" %{homedir}/etc/petidomo.conf.new \
 	> %{homedir}/etc/petidomo.conf
 rm -f %{homedir}/etc/petidomo.conf.new
-chown -f petidomo.petidomo %{homedir}/etc/petidomo.conf
+chown -f petidomo:petidomo %{homedir}/etc/petidomo.conf
 chmod -f 660 %{homedir}/etc/petidomo.conf
 
 if ! grep -q ^petidomo /etc/mail/aliases; then
