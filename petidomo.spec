@@ -1,21 +1,22 @@
-Summary:     Easy-to-use, easy-to-install mailing list server
-Name:        petidomo
-Version:     2.2
-Release:     5d
-Copyright:   free for non commercial use
-Group:	     Applications/Mail
-Group(pl):   Aplikacje/Poczta
-#######      ftp://ftp.petidomo.com/pub/petidomo/source
-Source:      %{name}-%{version}-src.tar.gz
-Source1:     %{name}-manual-html.tar.gz
-Source2:     help-pl-eng
-Source3:     commercial.txt
-Patch:	     %{name}-src.PLD.diff
-Patch1:	     %{name}-src.aliases.diff
-URL:	     http://www.petidomo.com
-BuildRoot:   /var/tmp/%{name}-%{version}-buildroot
-Vendor:	     Peter Simons <simons@petidomo.com>
-Summary(pl): £atwy w u¿yciu oraz instalacji serwer list pocztowych
+Summary:	Easy-to-use, easy-to-install mailing list server
+Name:		petidomo
+Version:	2.2
+Release:	5d
+Copyright:	free for non commercial use
+Group:		Applications/Mail
+Group(de):	Applikationen/Post
+Group(pl):	Aplikacje/Poczta
+Group(pt):	Aplicações/Correio Eletrônico
+Source0:	%{name}-%{version}-src.tar.gz
+Source1:	%{name}-manual-html.tar.gz
+Source2:	help-pl-eng
+Source3:	commercial.txt
+Patch0:		%{name}-src.PLD.diff
+Patch1:		%{name}-src.aliases.diff
+URL:		http://www.petidomo.com
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Vendor:		Peter Simons <simons@petidomo.com>
+Summary(pl):	£atwy w u¿yciu oraz instalacji serwer list pocztowych
 
 %description
 Petidomo Mailing List Manager
@@ -24,21 +25,23 @@ Petidomo Mailing List Manager
 Petidomo Mailing List Manager - zarz±dca pocztowych list dyskusyjnych
 
 %package cgimanager
-Summary:     CGI Manager for Petidomo
-Group:       Applications/Mail
-Group(pl):   Aplikacje/Poczta
-Requires:    %{name} = %{version}
-Summary(pl): Program CGI do zarz±dzania serwerem Petidomo
+Summary:	CGI Manager for Petidomo
+Group:		Applications/Mail
+Group(de):	Applikationen/Post
+Group(pl):	Aplikacje/Poczta
+Group(pt):	Aplicações/Correio Eletrônico
+Requires:	%{name} = %{version}
+Summary(pl):	Program CGI do zarz±dzania serwerem Petidomo
 
 %description cgimanager
-CGI program, that lets you do all the configuration out of your favourite
-WWW-Browser.
+CGI program, that lets you do all the configuration out of your
+favourite WWW-Browser.
 
 Warning: cgi manager is SUID root!
 
 %description -l pl cgimanager
-Program CGI pozwalaj±cy na konfiguracjê serwera Petidomo poprzez ulubion±
-przegl±darkê WWW.
+Program CGI pozwalaj±cy na konfiguracjê serwera Petidomo poprzez
+ulubion± przegl±darkê WWW.
 
 Ostrze¿enie: mened¿er CGI obdarzony jest SUID'em root.
 
@@ -51,7 +54,7 @@ Ostrze¿enie: mened¿er CGI obdarzony jest SUID'em root.
 %build
 autoconf
 ./configure \
-    --prefix=/usr
+--prefix=%{_prefix}
 
 %{__make} CFLAGS+="$RPM_OPT_FLAGS"
 
@@ -76,19 +79,19 @@ install scripts/pgp-decrypt.sh $RPM_BUILD_ROOT/home/petidomo/bin
 # 755 petidomo petidomo
 install scripts/send-pr $RPM_BUILD_ROOT/home/petidomo/bin
 # 660 petidomo petidomo
-install %SOURCE2 $RPM_BUILD_ROOT/home/petidomo/etc/help
-install etc/masteracl $RPM_BUILD_ROOT/home/petidomo/etc/acl
-install etc/masterconfig $RPM_BUILD_ROOT/home/petidomo/etc/petidomo.conf
+install %SOURCE2 $RPM_BUILD_ROOT/home/petidomo%{_sysconfdir}/help
+install etc/masteracl $RPM_BUILD_ROOT/home/petidomo%{_sysconfdir}/acl
+install etc/masterconfig $RPM_BUILD_ROOT/home/petidomo%{_sysconfdir}/petidomo.conf
 # 6111 root petidomo
 install -s src/htmlconf/htmlconf \
     $RPM_BUILD_ROOT/home/httpd/cgi-bin/petidomoconf
 # doc
 install %SOURCE3 .
 
-sed -e  "s#@MTA@#/usr/lib/sendmail#" < $RPM_BUILD_ROOT/home/petidomo/\
-etc/petidomo.conf > $RPM_BUILD_ROOT/home/petidomo/etc/petidomo.conf.new
-mv -f $RPM_BUILD_ROOT/home/petidomo/etc/petidomo.conf.new \
-$RPM_BUILD_ROOT/home/petidomo/etc/petidomo.conf
+sed -e  "s#@MTA@#%{_libdir}/sendmail#" < $RPM_BUILD_ROOT/home/petidomo/\
+etc/petidomo.conf > $RPM_BUILD_ROOT/home/petidomo%{_sysconfdir}/petidomo.conf.new
+mv -f $RPM_BUILD_ROOT/home/petidomo%{_sysconfdir}/petidomo.conf.new \
+$RPM_BUILD_ROOT/home/petidomo%{_sysconfdir}/petidomo.conf
 
 ln -s petidomo	$RPM_BUILD_ROOT/home/petidomo/bin/listserv
 ln -s petidomo  $RPM_BUILD_ROOT/home/petidomo/bin/hermes
@@ -110,8 +113,8 @@ if ! grep -q ^petidomo /etc/mail/aliases; then
 echo "#" 				>> /etc/mail/aliases
 echo "# Mailing List Stuff"		>> /etc/mail/aliases
 echo "#"				>> /etc/mail/aliases
-echo "petidomo-manager: postmaster"	>> /etc/mail/aliases
-echo "petidomo:  \"|/home/petidomo/bin/listserv\"" >> /etc/mail/aliases
+echo "petidomo-manager:postmaster"	>> /etc/mail/aliases
+echo "petidomo:\"|/home/petidomo/bin/listserv\"" >> /etc/mail/aliases
 /usr/bin/newaliases
 fi
 
@@ -123,7 +126,7 @@ chmod -f 751 /home/petidomo
 %doc scripts/list2news scripts/aliases4qmail.sh etc/listconfig commercial.txt
 
 %attr(751,petidomo,petidomo) %dir /home/petidomo/bin
-%attr(750,petidomo,petidomo) %dir /home/petidomo/etc
+%attr(750,petidomo,petidomo) %dir /home/petidomo%{_sysconfdir}
 %attr(750,petidomo,petidomo) %dir /home/petidomo/lists
 %attr(770,petidomo,petidomo) %dir /home/petidomo/crash
 
@@ -137,34 +140,10 @@ chmod -f 751 /home/petidomo
 %attr(750,petidomo,petidomo) /home/petidomo/bin/pgp-decrypt.sh
 %attr(755,petidomo,petidomo) /home/petidomo/bin/send-pr
 
-%attr(660,petidomo,petidomo) %config(noreplace) %verify(not size mtime md5) /home/petidomo/etc/*
+%attr(660,petidomo,petidomo) %config(noreplace) %verify(not size mtime md5) /home/petidomo%{_sysconfdir}/*
 
 %attr(644,petidomo,petidomo) /home/petidomo/.nofinger
 
 %files cgimanager
+%defattr(644,root,root,755)
 %attr(6111,root,petidomo) /home/httpd/cgi-bin/petidomoconf
-
-%changelog
-* Sat Jan 16 1999 Arkadiusz Mi¶kiewicz <misiek@pld.za.net>
-[2.2-5d]
-- added cgimanager subpackage (includes SUID)
-- changed /etc/aliases to /etc/mail/aliases
-- removed /home/petidomo
-- added stripping
-
-* Tue Dec 22 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-[2.2-3d]
-- added commercial.txt (now we can put this rpm on ftp server)
-- few corrections
-
-* Sun Nov 08 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-- removed patch
-- removed archived directory
-- corrected few paths
-- removed (noreplace) from acl and petidomo.conf file
-- added usermod
-- added .nofinger
-- added help-pl-eng
-
-* Thu Oct 29 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-- initial RPM release
