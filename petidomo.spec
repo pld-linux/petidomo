@@ -1,37 +1,37 @@
 Summary:	Easy-to-use, easy-to-install mailing list server
+Summary(pl):	£atwy w u¿yciu oraz instalacji serwer list pocztowych
 Name:		petidomo
 Version:	2.2
 Release:	5d
-Copyright:	free for non commercial use
+License:	free for non commercial use
+Vendor:		Peter Simons <simons@petidomo.com>
 Group:		Applications/Mail
 Group(de):	Applikationen/Post
 Group(pl):	Aplikacje/Poczta
 Group(pt):	Aplicações/Correio Eletrônico
-Source0:	%{name}-%{version}-src.tar.gz
+Source0:	http://www.petidomo.com/download/%{version}/source/%{name}-%{version}-src.tar.gz
 Source1:	%{name}-manual-html.tar.gz
 Source2:	help-pl-eng
 Source3:	commercial.txt
 Patch0:		%{name}-src.PLD.diff
 Patch1:		%{name}-src.aliases.diff
-URL:		http://www.petidomo.com
+URL:		http://www.petidomo.com/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Vendor:		Peter Simons <simons@petidomo.com>
-Summary(pl):	£atwy w u¿yciu oraz instalacji serwer list pocztowych
 
 %description
-Petidomo Mailing List Manager
+Petidomo Mailing List Manager.
 
 %description -l pl
-Petidomo Mailing List Manager - zarz±dca pocztowych list dyskusyjnych
+Petidomo Mailing List Manager - zarz±dca pocztowych list dyskusyjnych.
 
 %package cgimanager
 Summary:	CGI Manager for Petidomo
+Summary(pl):	Program CGI do zarz±dzania serwerem Petidomo
 Group:		Applications/Mail
 Group(de):	Applikationen/Post
 Group(pl):	Aplikacje/Poczta
 Group(pt):	Aplicações/Correio Eletrônico
 Requires:	%{name} = %{version}
-Summary(pl):	Program CGI do zarz±dzania serwerem Petidomo
 
 %description cgimanager
 CGI program, that lets you do all the configuration out of your
@@ -43,7 +43,7 @@ Warning: cgi manager is SUID root!
 Program CGI pozwalaj±cy na konfiguracjê serwera Petidomo poprzez
 ulubion± przegl±darkê WWW.
 
-Ostrze¿enie: mened¿er CGI obdarzony jest SUID'em root.
+Ostrze¿enie: mened¿er CGI obdarzony jest SUID-em root.
 
 %prep
 %setup -q -n %{name}-src
