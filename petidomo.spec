@@ -38,7 +38,7 @@ Warning: cgi manager is SUID root!
 Program CGI pozwalaj±cy na konfiguracjê serwera Petidomo poprzez
 ulubion± przegl±darkê WWW.
 
-Ostrze¿enie: mened¿er CGI obdarzony jest SUID-em root.
+Ostrze¿enie: zarz±dca CGI obdarzony jest SUID-em root.
 
 %prep
 %setup -q -n %{name}-src
