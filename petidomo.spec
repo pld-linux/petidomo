@@ -6,9 +6,6 @@ Release:	5d
 License:	free for non commercial use
 Vendor:		Peter Simons <simons@petidomo.com>
 Group:		Applications/Mail
-Group(de):	Applikationen/Post
-Group(pl):	Aplikacje/Poczta
-Group(pt):	Aplicações/Correio Eletrônico
 Source0:	http://www.petidomo.com/download/%{version}/source/%{name}-%{version}-src.tar.gz
 Source1:	%{name}-manual-html.tar.gz
 Source2:	help-pl-eng
@@ -29,9 +26,6 @@ Petidomo Mailing List Manager - zarz±dca pocztowych list dyskusyjnych.
 Summary:	CGI Manager for Petidomo
 Summary(pl):	Program CGI do zarz±dzania serwerem Petidomo
 Group:		Applications/Mail
-Group(de):	Applikationen/Post
-Group(pl):	Aplikacje/Poczta
-Group(pt):	Aplicações/Correio Eletrônico
 Requires:	%{name} = %{version}
 
 %description cgimanager
