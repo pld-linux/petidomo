@@ -47,7 +47,7 @@ Ostrze¿enie: mened¿er CGI obdarzony jest SUID-em root.
 %setup -q -D -T -a 1 -n %{name}-src
 
 %build
-autoconf
+%{__autoconf}
 ./configure \
 --prefix=%{_prefix}
 
