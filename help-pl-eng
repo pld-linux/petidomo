@@ -1,0 +1,104 @@
+              Jak u¿ywaæ serwera list pocztowych Petidomo 2.x
+	      ***********************************************
+	      How to use the Petidomo 2.x mailing list server
+	      ***********************************************
+
+(PL)
+Petidomo jest zautomatyzowanym serwerem list pocztowych, który zarz±dza
+listami bez interakcji z cz³owiekiem. Program rozumie listê komend,
+których mo¿esz u¿ywaæ by dodaæ lub usun±æ siê z okre¶lonych list
+dyskusyjnych. Komendy te zosta³y poni¿ej obja¶nione:
+
+(ENG)
+Petidomo is an automatic mailing list server, which maintains mailing lists
+without any human interaction. The program understands a set of commands
+which you can use to add yourself to mailing lists, or to remove you from
+lists you are subscribed on. These commands will be explained in the
+following paragraphs:
+
+ SUBSCRIBE
+ *********
+ 	(PL)
+	Komenda "subscribe" spowoduje dodanie Twojego adresu do listy
+	dyskusyjnej. Zwykle wys³anie do serwera e-maila zawieraj±cego
+	w tre¶ci listu tylko to s³owo spowoduje dopisanie Ciê do listy.
+	Na wypadek gdyby¶ chcia³(a) zapisaæ siê z innego adresu ni¿ ten
+	z którego teraz wysy³asz mo¿esz podaæ adres jako parametr do
+	komendy np.:
+	
+	subscribe u¿ytkownik@serwer.domena.pl
+	
+	Wiedz tak¿e, ¿e wiele serwerów list pocztowych nie pozwala na
+	subskrybcjê z innego adresu ni¿ ten z którego aktualnie wysy³asz,
+	a to z powodu, mo¿liwo¶ci nadu¿ywana tej opcji.
+
+	(ENG)
+	The "subscribe" command will add your address to a mailing list.
+	Usually sending an e-mail to the server with only this word in the
+	body of the mail will do the right thing for you. In case you want
+	to subscribe an address not equal to the one you are mailing from,
+	you can add this address as parameter to the command, like this:
+
+	subscribe user@site.domain.net
+
+	Please note that many list servers to do not allow to subscribe
+	other addresses than your own, though, because this feature can be
+	abused.
+
+ UNSUBSCRIBE
+ ***********
+ 	(PL)
+ 	Sk³adnia i u¿ycie komendy "unsubscribe" jest takie samo jak dla
+	komendy "subscribe" z tym, ¿e wynik dzia³ania jest inny. Wys³anie
+	tej komendy spowoduje, ¿e serwer usunie Twój adres z listy.
+	
+	(ENG)
+	Syntax and usage of the "unsubscribe" command are the same as with
+	the "subscribe" command, the purpose is a bit different though:
+	Sending this command to the server will remove your address from
+	the mailing list.
+
+ INDEX
+ *****
+ 	(PL)
+ 	Komenda "index" nie wymaga podawania ¿adnych parametrów. Wys³anie
+	jej do serwera spowoduje, ¿e otrzymasz listê dostêpnych pocztowych
+	list dyskusyjnych na tym serwerze. Komenda ta jest przydatna
+	szczególnie wtedy gdy chcesz subskrybowaæ grupê, której nazwy
+	dok³adnie nie pamiêtasz.
+	
+	(ENG)
+	The "index" command does not need any parameters. Sending it to the
+	server will get you a list of available mailing lists on this
+	server. This is useful in case you want to subscribe to a list but
+	can't remember the exact name anymore.
+
+ HELP
+ ****
+	(PL)
+	Komenda "help" spowoduje, ¿e serwer przy¶le Ci ten plik.
+	
+	(ENG)
+	The "help" command will make the list server send you this file.
+
+ HELP nazwa_listy
+ HELP    listname
+ ****************
+ 	(PL)
+ 	Je¶li podasz parametr po komendzie "help" serwer przy¶le Ci
+	opis dotycz±cy okre¶lonej pocztowej listy dyskusyjnej.
+	Opis zwykle zawiera g³ówny temat oraz cele jakim s³u¿y lista.
+	
+	(ENG)
+	If you specify a parameter after the "help" command, the server
+	will send you the description of this mailing list back. The
+	description usually contains the topic and purpose of the mailing
+	list.
+
+(PL)
+Komendy musz± zaczynaæ siê w pierwszej kolumnie, ka¿da komenda
+w osobnej linijce. Linie nie zawieraj±ce komend bêd± zignorowane.
+
+(ENG)
+Commands must begin at the first column on each line in the mail, to
+be recognized. Lines which do not contain a command will be ignored.

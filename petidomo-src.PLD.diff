@@ -1,0 +1,54 @@
+diff -urN petidomo-src.orig/scripts/aliases4qmail.sh petidomo-src/scripts/aliases4qmail.sh
+--- petidomo-src.orig/scripts/aliases4qmail.sh	Sun Nov  8 13:54:55 1998
++++ petidomo-src/scripts/aliases4qmail.sh	Sun Nov  8 15:06:47 1998
+@@ -3,7 +3,7 @@
+ # SEE COMMENTS AT END.
+ # Avery Earle, ae@play.psych.mun.ca, July 11, 1997.
+ 
+-AWK=/usr/local/bin/gawk
++AWK=/usr/bin/awk
+ 
+ $AWK '
+ 
+@@ -128,7 +128,7 @@
+ over a file in ~alias/; thus the following is WRONG (that is, useless)
+ 
+ 	file:		 /var/qmail/alias/.qmail-petidomo
+-	content:	| preline /u6/petidomo/bin/listserv
++	content:	| preline /home/petidomo/bin/listserv
+ 
+ 	file:		/var/qmail/alias/.qmail-petidomo-manager
+ 	content:	fred
+@@ -136,7 +136,7 @@
+ and what is needed is
+ 
+ 	file:		~petidomo/.qmail
+-	content:	| preline /u6/petidomo/bin/listserv
++	content:	| preline /home/petidomo/bin/listserv
+ 
+ 	file:		~petidomo/.qmail-manager
+ 	content:	fred
+diff -urN petidomo-src.orig/scripts/pgp-decrypt.sh petidomo-src/scripts/pgp-decrypt.sh
+--- petidomo-src.orig/scripts/pgp-decrypt.sh	Sun Nov  8 13:54:55 1998
++++ petidomo-src/scripts/pgp-decrypt.sh	Sun Nov  8 13:57:55 1998
+@@ -10,7 +10,7 @@
+ #
+ # Please customize these things for your system.
+ #
+-PGP=/usr/local/bin/pgp
++PGP=/usr/bin/pgp
+ export PGPPATH=$PDHOME/.pgp
+ PASSWORD="DecryptMe"
+ 
+diff -urN petidomo-src.orig/scripts/pgp-encrypt.sh petidomo-src/scripts/pgp-encrypt.sh
+--- petidomo-src.orig/scripts/pgp-encrypt.sh	Sun Nov  8 13:54:55 1998
++++ petidomo-src/scripts/pgp-encrypt.sh	Sun Nov  8 13:58:07 1998
+@@ -10,7 +10,7 @@
+ #
+ # Please customize these things for your system.
+ #
+-PGP=/usr/local/bin/pgp
++PGP=/usr/bin/pgp
+ PGPPATH=$PDHOME/.pgp
+ PASSWORD="DecryptMe"
+ 

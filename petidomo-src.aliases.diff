@@ -1,0 +1,77 @@
+diff -urN petidomo-src.orig/scripts/aliases4qmail.sh petidomo-src/scripts/aliases4qmail.sh
+--- petidomo-src.orig/scripts/aliases4qmail.sh	Sat Jan 16 23:26:19 1999
++++ petidomo-src/scripts/aliases4qmail.sh	Sat Jan 16 23:26:52 1999
+@@ -113,11 +113,11 @@
+ # COMMENTS.
+ # ------------------------------------------------------------
+ 
+-This is a rough cut of a script for converting lines of /etc/aliases
++This is a rough cut of a script for converting lines of /etc/mail/aliases
+ to instructions for generating corresponding .qmail files. Typical
+ invocation is
+ 
+-        cat /etc/aliases | ./this-script > temp.sh
++        cat /etc/mail/aliases | ./this-script > temp.sh
+ 
+ This thing seems to work, but users are urged to INSPECT THE OUTPUT
+ BEFORE EXECUTING IT.
+diff -urN petidomo-src.orig/src/htmlconf/aliases.c petidomo-src/src/htmlconf/aliases.c
+--- petidomo-src.orig/src/htmlconf/aliases.c	Sat Jan 16 23:26:19 1999
++++ petidomo-src/src/htmlconf/aliases.c	Sat Jan 16 23:27:56 1999
+@@ -51,9 +51,9 @@
+ 
+     SetUIDRoot();
+ 
+-    /* Add the aliases to "/etc/aliases". */
++    /* Add the aliases to "/etc/mail/aliases". */
+ 
+-    fh = fopen("/etc/aliases", "a");
++    fh = fopen("/etc/mail/aliases", "a");
+     if (fh == NULL) {
+ 	SetUIDPetidomo();
+ 	return -1;
+@@ -90,9 +90,9 @@
+ 
+     SetUIDRoot();
+ 
+-    /* Load "/etc/aliases". */
++    /* Load "/etc/mail/aliases". */
+ 
+-    aliases = loadfile("/etc/aliases");
++    aliases = loadfile("/etc/mail/aliases");
+     if (aliases == NULL) {
+ 	SetUIDPetidomo();
+ 	return -1;
+@@ -100,7 +100,7 @@
+ 
+     /* Write the file back and skip the aliases for that list. */
+ 
+-    fh = fopen("/etc/aliases", "w");
++    fh = fopen("/etc/mail/aliases", "w");
+     if (fh == NULL) {
+ 	SetUIDPetidomo();
+ 	return -1;
+diff -urN petidomo-src.orig/src/htmlconf/handlecreatlist.c petidomo-src/src/htmlconf/handlecreatlist.c
+--- petidomo-src.orig/src/htmlconf/handlecreatlist.c	Sat Jan 16 23:26:19 1999
++++ petidomo-src/src/htmlconf/handlecreatlist.c	Sat Jan 16 23:28:19 1999
+@@ -300,7 +300,7 @@
+ 	printMainPage();
+ 	puts("<H3>ERROR</H1>");
+ 	puts("The mailing list was created, but adding the required aliases to\n");
+-	puts("\"/etc/aliases\" failed with the following error:<P>\n");
++	puts("\"/etc/mail/aliases\" failed with the following error:<P>\n");
+ 	printf("<CENTER><CODE>%s</CODE></CENTER><P>\n", strerror(errno));
+ 	puts("The mailing list aliases have to be added manually.\n");
+ 	puts("Please contact the administrator with this problem.<P>\n");
+diff -urN petidomo-src.orig/src/htmlconf/handleremlist.c petidomo-src/src/htmlconf/handleremlist.c
+--- petidomo-src.orig/src/htmlconf/handleremlist.c	Sat Jan 16 23:26:19 1999
++++ petidomo-src/src/htmlconf/handleremlist.c	Sat Jan 16 23:28:34 1999
+@@ -81,7 +81,7 @@
+ 	printMainPage();
+ 	puts("<H3>ERROR</H1>");
+ 	puts("The mailing list was removed, but removing the required aliases from\n");
+-	puts("\"/etc/aliases\" failed with the following error:<P>\n");
++	puts("\"/etc/mail/aliases\" failed with the following error:<P>\n");
+ 	printf("<CENTER><CODE>%s</CODE></CENTER><P>\n", strerror(errno));
+ 	puts("The mailing list aliases have to be removed manually.\n");
+ 	puts("Please contact the administrator with this problem.<P>\n");
