@@ -34,7 +34,7 @@ favourite WWW-Browser.
 
 Warning: cgi manager is SUID root!
 
-%description -l pl cgimanager
+%description cgimanager -l pl
 Program CGI pozwalaj±cy na konfiguracjê serwera Petidomo poprzez
 ulubion± przegl±darkê WWW.
 
