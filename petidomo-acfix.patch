@@ -1,0 +1,33 @@
+--- petidomo-src/configure.in.orig	Mon Aug 17 14:31:24 1998
++++ petidomo-src/configure.in	Tue Feb 11 13:50:39 2003
+@@ -46,17 +46,14 @@
+ dnl Checks for library functions
+ dnl
+ AC_CHECK_FUNC(memmove, , [
+-    LIBOBJS="$LIBOBJS memmove.o"
+-    AC_SUBST(LIBOBJS)
++    AC_LIBOBJ([memmove])
+ ])
+ AC_CHECK_FUNC(strerror, , [
+-    LIBOBJS="$LIBOBJS strerror.o"
+-    AC_SUBST(LIBOBJS)
++    AC_LIBOBJ([strerror])
+ ])
+ AC_CHECK_FUNC(atexit, , [
+     AC_CHECK_FUNC(on_exit, [
+-        LIBOBJS="$LIBOBJS atexit.o"
+-        AC_SUBST(LIBOBJS)
++        AC_LIBOBJ([atexit])
+     ], [
+         AC_MSG_ERROR(Your system has neither atexit() nor on_exit())
+     ])
+@@ -78,8 +75,7 @@
+ 
+ AC_CHECK_FUNCS(vsnprintf __vsnprintf)
+ if test "$ac_cv_func_vsnprintf" = "no" -a "$ac_cv_func___vsnprintf" = "no"; then
+-    LIBOBJS="$LIBOBJS snprintf.o"
+-    AC_SUBST(LIBOBJS)
++    AC_LIBOBJ([snprintf])
+ fi
+ AC_CHECK_LIB(ucb, setreuid, [
+     if test ! "$ac_internal_added_ucb" = "yes"; then
