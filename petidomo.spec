@@ -8,7 +8,9 @@ License:	Free for non-commercial use
 Vendor:		Peter Simons <simons@petidomo.com>
 Group:		Applications/Mail
 Source0:	http://www.petidomo.com/download/%{version}/source/%{name}-%{version}-src.tar.gz
+# Source0-md5:	37f1380503f60d6a53ca70e1500bd50a
 Source1:	%{name}-manual-html.tar.gz
+# Source1-md5:	6dc92bea47f13588d0b53594426fbff1
 Source2:	help-pl-eng
 Source3:	commercial.txt
 Patch0:		%{name}-src.PLD.diff
