@@ -83,7 +83,7 @@ install scripts/pgp-decrypt.sh $RPM_BUILD_ROOT%{homedir}/bin
 # 755 petidomo petidomo
 install scripts/send-pr $RPM_BUILD_ROOT%{homedir}/bin
 # 660 petidomo petidomo
-install %SOURCE2 $RPM_BUILD_ROOT%{homedir}/etc/help
+install %{SOURCE2} $RPM_BUILD_ROOT%{homedir}/etc/help
 install etc/masteracl $RPM_BUILD_ROOT%{homedir}/etc/acl
 sed -e "s#@MTA@#/usr/lib/sendmail#" etc/masterconfig \
 	>$RPM_BUILD_ROOT%{homedir}/etc/petidomo.conf
