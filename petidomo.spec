@@ -56,7 +56,7 @@ autoconf
 ./configure \
 --prefix=%{_prefix}
 
-%{__make} CFLAGS+="$RPM_OPT_FLAGS"
+%{__make} CFLAGS+="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -69,7 +69,7 @@ install -d $RPM_BUILD_ROOT/home/petidomo/{etc,lists}
 # 770 petidomo petidomo
 install -d $RPM_BUILD_ROOT/home/petidomo/crash
 # 6111 petidomo petidomo
-install -s src/petidomo/petidomo $RPM_BUILD_ROOT/home/petidomo/bin
+install src/petidomo/petidomo $RPM_BUILD_ROOT/home/petidomo/bin
 # 750 petidomo petidomo
 install scripts/InsertNameInSubject.sh $RPM_BUILD_ROOT/home/petidomo/bin
 install scripts/rfc2369.sh $RPM_BUILD_ROOT/home/petidomo/bin
@@ -83,18 +83,18 @@ install %SOURCE2 $RPM_BUILD_ROOT/home/petidomo%{_sysconfdir}/help
 install etc/masteracl $RPM_BUILD_ROOT/home/petidomo%{_sysconfdir}/acl
 install etc/masterconfig $RPM_BUILD_ROOT/home/petidomo%{_sysconfdir}/petidomo.conf
 # 6111 root petidomo
-install -s src/htmlconf/htmlconf \
-    $RPM_BUILD_ROOT/home/httpd/cgi-bin/petidomoconf
+install src/htmlconf/htmlconf \
+	$RPM_BUILD_ROOT/home/httpd/cgi-bin/petidomoconf
 # doc
-install %SOURCE3 .
+install %{SOURCE3} .
 
 sed -e  "s#@MTA@#%{_libdir}/sendmail#" < $RPM_BUILD_ROOT/home/petidomo/\
 etc/petidomo.conf > $RPM_BUILD_ROOT/home/petidomo%{_sysconfdir}/petidomo.conf.new
 mv -f $RPM_BUILD_ROOT/home/petidomo%{_sysconfdir}/petidomo.conf.new \
 $RPM_BUILD_ROOT/home/petidomo%{_sysconfdir}/petidomo.conf
 
-ln -s petidomo	$RPM_BUILD_ROOT/home/petidomo/bin/listserv
-ln -s petidomo  $RPM_BUILD_ROOT/home/petidomo/bin/hermes
+ln -sf petidomo	$RPM_BUILD_ROOT/home/petidomo/bin/listserv
+ln -sf petidomo  $RPM_BUILD_ROOT/home/petidomo/bin/hermes
 
 touch $RPM_BUILD_ROOT/home/petidomo/.nofinger
 
