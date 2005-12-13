@@ -139,7 +139,7 @@ fi
 %attr(750,root,petidomo) %{homedir}/bin/pgp-decrypt.sh
 %attr(755,root,petidomo) %{homedir}/bin/send-pr
 
-%attr(660,root,petidomo) %config(noreplace) %verify(not size mtime md5) %{homedir}/etc/*
+%attr(660,root,petidomo) %config(noreplace) %verify(not md5 mtime size) %{homedir}/etc/*
 
 %attr(644,root,petidomo) %{homedir}/.nofinger
 
