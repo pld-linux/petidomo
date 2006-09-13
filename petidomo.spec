@@ -36,7 +36,7 @@ Petidomo Mailing List Manager - zarz±dca pocztowych list dyskusyjnych.
 Summary:	CGI Manager for Petidomo
 Summary(pl):	Program CGI do zarz±dzania serwerem Petidomo
 Group:		Applications/Mail
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description cgimanager
 CGI program, that lets you do all the configuration out of your
