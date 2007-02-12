@@ -1,6 +1,6 @@
 # TODO: there is no petidomo user/group (anywhere)
 Summary:	Easy-to-use, easy-to-install mailing list server
-Summary(pl):	£atwy w uøyciu oraz instalacji serwer list pocztowych
+Summary(pl.UTF-8):   ≈Åatwy w u≈ºyciu oraz instalacji serwer list pocztowych
 Name:		petidomo
 Version:	2.2
 Release:	5d
@@ -29,12 +29,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Petidomo Mailing List Manager.
 
-%description -l pl
-Petidomo Mailing List Manager - zarz±dca pocztowych list dyskusyjnych.
+%description -l pl.UTF-8
+Petidomo Mailing List Manager - zarzƒÖdca pocztowych list dyskusyjnych.
 
 %package cgimanager
 Summary:	CGI Manager for Petidomo
-Summary(pl):	Program CGI do zarz±dzania serwerem Petidomo
+Summary(pl.UTF-8):   Program CGI do zarzƒÖdzania serwerem Petidomo
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 
@@ -44,11 +44,11 @@ favourite WWW-Browser.
 
 Warning: cgi manager is SUID root!
 
-%description cgimanager -l pl
-Program CGI pozwalaj±cy na konfiguracjÍ serwera Petidomo poprzez
-ulubion± przegl±darkÍ WWW.
+%description cgimanager -l pl.UTF-8
+Program CGI pozwalajƒÖcy na konfiguracjƒô serwera Petidomo poprzez
+ulubionƒÖ przeglƒÖdarkƒô WWW.
 
-Uwaga: zarz±dca CGI obdarzony jest SUID-em root.
+Uwaga: zarzƒÖdca CGI obdarzony jest SUID-em root.
 
 %prep
 %setup -q -n %{name}-src -a1
