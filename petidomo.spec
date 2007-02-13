@@ -1,6 +1,6 @@
 # TODO: there is no petidomo user/group (anywhere)
 Summary:	Easy-to-use, easy-to-install mailing list server
-Summary(pl.UTF-8):   Łatwy w użyciu oraz instalacji serwer list pocztowych
+Summary(pl.UTF-8):	Łatwy w użyciu oraz instalacji serwer list pocztowych
 Name:		petidomo
 Version:	2.2
 Release:	5d
@@ -34,7 +34,7 @@ Petidomo Mailing List Manager - zarządca pocztowych list dyskusyjnych.
 
 %package cgimanager
 Summary:	CGI Manager for Petidomo
-Summary(pl.UTF-8):   Program CGI do zarządzania serwerem Petidomo
+Summary(pl.UTF-8):	Program CGI do zarządzania serwerem Petidomo
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 
