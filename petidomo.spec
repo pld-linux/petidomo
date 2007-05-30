@@ -1,14 +1,18 @@
-# TODO: there is no petidomo user/group (anywhere)
+# TODO
+# - build ;)
+# - there is no petidomo user/group (anywhere)
+# - move to /var/lib and /etc (FHS)
+%define		_beta	b6
+%define		_rel	0.1
 Summary:	Easy-to-use, easy-to-install mailing list server
 Summary(pl.UTF-8):	Łatwy w użyciu oraz instalacji serwer list pocztowych
 Name:		petidomo
-Version:	2.2
-Release:	5d
+Version:	4.0
+Release:	%{_beta}.%{_rel}
 License:	Free for non-commercial use
-Vendor:		Peter Simons <simons@petidomo.com>
 Group:		Applications/Mail
-Source0:	http://www.petidomo.com/download/%{version}/source/%{name}-%{version}-src.tar.gz
-# Source0-md5:	37f1380503f60d6a53ca70e1500bd50a
+Source0:	ftp://ftp.ossp.org/pkg/tool/petidomo/%{name}-%{version}%{_beta}.tar.gz
+# Source0-md5:	968f4ca0a0b97acc2e095090ba31afcc
 Source1:	%{name}-manual-html.tar.gz
 # Source1-md5:	6dc92bea47f13588d0b53594426fbff1
 Source2:	help-pl-eng
@@ -20,7 +24,7 @@ URL:		http://www.petidomo.com/
 BuildRequires:	autoconf >= 2.53
 Requires(post):	fileutils
 Requires(post):	grep
-Requires(post):	sed
+Requires(post):	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		homedir		/home/services/petidomo
@@ -30,7 +34,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Petidomo Mailing List Manager.
 
 %description -l pl.UTF-8
-Petidomo Mailing List Manager - zarządca pocztowych list dyskusyjnych.
+Petidomo Mailing List Manager - zarządca pocztowych list
+dyskusyjnych.
 
 %package cgimanager
 Summary:	CGI Manager for Petidomo
@@ -51,16 +56,16 @@ ulubioną przeglądarkę WWW.
 Uwaga: zarządca CGI obdarzony jest SUID-em root.
 
 %prep
-%setup -q -n %{name}-src -a1
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%setup -q -n %{name}-%{version}%{_beta} -a1
+#%patch0 -p1
+#%patch1 -p1
+#%patch2 -p1
 
 %build
 %{__autoconf}
 %configure
-
-%{__make} CFLAGS+="%{rpmcflags}"
+%{__make} \
+	CFLAGS+="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -102,20 +107,15 @@ touch $RPM_BUILD_ROOT%{homedir}/.nofinger
 rm -rf $RPM_BUILD_ROOT
 
 %post
-mv -f %{homedir}/etc/petidomo.conf %{homedir}/etc/petidomo.conf.new
-sed -e "s#@HOSTNAME@#`hostname --fqdn`#" %{homedir}/etc/petidomo.conf.new \
-	> %{homedir}/etc/petidomo.conf
-rm -f %{homedir}/etc/petidomo.conf.new
-chown -f petidomo:petidomo %{homedir}/etc/petidomo.conf
-chmod -f 660 %{homedir}/etc/petidomo.conf
+sed -i -e "s#@HOSTNAME@#`hostname --fqdn`#" %{homedir}/etc/petidomo.conf
 
 if ! grep -q ^petidomo /etc/mail/aliases; then
-echo "#" 				>> /etc/mail/aliases
-echo "# Mailing List Stuff"		>> /etc/mail/aliases
-echo "#"				>> /etc/mail/aliases
-echo "petidomo-manager:postmaster"	>> /etc/mail/aliases
-echo "petidomo:\"|%{homedir}/bin/listserv\"" >> /etc/mail/aliases
-/usr/bin/newaliases
+	echo "#" 				>> /etc/mail/aliases
+	echo "# Mailing List Stuff"		>> /etc/mail/aliases
+	echo "#"				>> /etc/mail/aliases
+	echo "petidomo-manager:postmaster"	>> /etc/mail/aliases
+	echo "petidomo:\"|%{homedir}/bin/listserv\"" >> /etc/mail/aliases
+	/usr/bin/newaliases
 fi
 
 %files
